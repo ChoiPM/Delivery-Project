@@ -4,6 +4,7 @@ public class Test {
         System.out.println("34");
         System.out.println("56");
         System.out.println("67");
+        System.out.println("6");
 
     }
 }
