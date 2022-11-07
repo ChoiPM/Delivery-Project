@@ -4,6 +4,5 @@ public class Test {
         System.out.println("34");
         System.out.println("Jang");
         System.out.println("Lee");
-        System.out.println("이소림");
     }
 }
