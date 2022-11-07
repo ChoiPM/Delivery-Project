@@ -1,11 +1,16 @@
+import persistence.MyBatisConnectionFactory;
+import persistence.dao.MyUsersDAO;
+import persistence.dto.UsersDTO;
+import java.util.List;
+
 public class Test {
     public static void main(String[] args) {
-        System.out.println("12");
-        System.out.println("34");
-        System.out.println("Jang");
-        System.out.println("Lee");
+        MyUserDAO myBoardDAO = new MyUserDAO(MyBatisConnectionFactory.getSqlSessionFactory());
+        UsersDTO usersDTO = new UsersDTO();
+        usersDTO.setId("sorim");
 
-        System.out.println("JJang");
-        System.out.println("이소림");
+        List<UsersDTO> posts3 = myBoardDAO.findPostWithTitleNameLike3(usersDTO);
+        System.out.println("posts2.size() = " + posts3.size());
+        posts3.stream().forEach(p -> System.out.println(p.toString()));
     }
 }

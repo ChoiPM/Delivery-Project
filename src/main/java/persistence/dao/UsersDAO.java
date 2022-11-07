@@ -9,18 +9,18 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsersDAO {
-    {
-        //get-가 static이기 때문에 new keyword를 사용하지 않더라도 class method 호출 가능
-        private final DataSource ds = PooledDataSource.getDataSource();
-        public List<UsersDTO> findAll() {
+public class UsersDAO
+{
+    //get-가 static이기 때문에 new keyword를 사용하지 않더라도 class method 호출 가능
+    private final DataSource ds = PooledDataSource.getDataSource();
+    public List<UsersDTO> findAll() {
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
 
         //BoardDTO에 제목, 글쓴이, 내용, 조회수 등을 DTO에 담고, 그 DTO를 DAO에 넣음
         //ArrayList는 한 건 한 건을 모아놓은 list
-        List<UsersDTO> userDTOs = new ArrayList<>();
+        List<UsersDTO> usersDTOs = new ArrayList<>();
 
         //try 안->비즈니스 로직
         try {
@@ -40,25 +40,30 @@ public class UsersDAO {
             rs = stmt.executeQuery(query);
 
             while (rs.next()) {
-                UsersDTO boardDTO = new UsersDTO();
-                Long id = rs.getLong("board_id");
-                String title = rs.getString("title");
-                String writer = rs.getString("writer");
-                String contents = rs.getString("contents");
-                LocalDateTime regdate = rs.getTimestamp("regdate").toLocalDateTime();
-                int hit = rs.getInt("hit");
+                UsersDTO usersDTO = new UsersDTO();
+                Long idNum = rs.getLong("user_id");
+                String id = rs.getString("board_id");
+                String password = rs.getString("password");
+                String phoneNum = rs.getString("phone");
+                String email = rs.getString("email");
+                String grade = rs.getString("grade");
+                String role = rs.getString("role");
+                String address = rs.getString("current_address");
+                LocalDateTime createdDate = rs.getTimestamp("created_date").toLocalDateTime();
+                LocalDateTime modifiedDate = rs.getTimestamp("modified_date").toLocalDateTime();
+                String status = rs.getString("status");
 
                 //데이터 바인딩(묶다)(=매핑)
-                boardDTO.setId(id);
-                boardDTO.setContents(contents);
-                boardDTO.setHit(hit);
-                boardDTO.setRegDate(regdate);
-                boardDTO.setTitle(title);
-                boardDTO.setWriter(writer);
+                /*usersDTO.setIdNum(idNum);
+                usersDTO.setContents(contents);
+                usersDTO.setHit(hit);
+                usersDTO.setRegDate(regdate);
+                usersDTO.setTitle(title);
+                usersDTO.setWriter(writer);*/
                 //귀찮으니까 바인딩을 자동으로 해보자
 
                 //ArrayList에 DTO를 넣는 코드
-                boardDTOs.add(boardDTO);
+                usersDTOs.add(usersDTO);
             }
 //            conn.commit();
         }
@@ -90,6 +95,6 @@ public class UsersDAO {
         }
 
         //DTO ArrayList를 return
-        return userDTOs;
+        return usersDTOs;
     }
 }

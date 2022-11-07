@@ -14,7 +14,7 @@ public class UsersDTO {
     private String password;
     private String phoneNum;
     private String email;
-    private String graded;
+    private String grade;
     private String role;
     private String address;
     private LocalDateTime createdDate;

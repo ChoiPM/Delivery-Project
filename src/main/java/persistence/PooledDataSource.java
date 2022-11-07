@@ -1,4 +1,4 @@
-package persistence.dto;
+package persistence;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
