@@ -12,5 +12,6 @@ public class Test {
         List<UsersDTO> posts3 = myBoardDAO.findPostWithTitleNameLike3(usersDTO);
         System.out.println("posts2.size() = " + posts3.size());
         posts3.stream().forEach(p -> System.out.println(p.toString()));
+        //코드 수정용
     }
 }
