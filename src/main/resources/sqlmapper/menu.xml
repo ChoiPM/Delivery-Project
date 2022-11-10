@@ -19,11 +19,11 @@
     </resultMap>
 
     <select id="registerOption" resultType="persistence.dto.registerOption">
-
+        SELECT * FROM MENU
     </select>
 
-    <select id="registerOption" resultType="persistence.dto.registerMenu">
-
+    <select id="registerMenu" resultType="persistence.dto.registerMenu">
+        SELECT * FROM MENU
     </select>
 
     <select id="selectAll" resultType="persistence.dto.MenuDTO">
@@ -31,7 +31,7 @@
     </select>
 
     <select id="modifyMenu" resultType="persistence.dto.modifyMenu">
-
+        SELECT * FROM MENU
     </select>
 
 </mapper>

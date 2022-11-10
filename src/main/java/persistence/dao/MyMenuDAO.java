@@ -3,6 +3,7 @@ package persistence.dao;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import persistence.dto.MenuDTO;
+import persistence.dto.UsersDTO;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -54,18 +55,16 @@ public class MyMenuDAO { //MyBatis 사용
     }
 
     //전체 조회
-    public List<MenuDTO> selectAll()
+    public List<MenuDTO> selectAll(UsersDTO usersDTO)
     {
         List<MenuDTO> dtos = new ArrayList<>();
         SqlSession session = sqlSessionFactory.openSession();
         try
         {
             dtos = session.selectList("mapper.MenuMapper.selectAll");
-            session.commit();
         }
         finally
         {
-            session.rollback();
             session.close();
         }
         return dtos;
