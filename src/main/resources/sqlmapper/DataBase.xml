@@ -19,7 +19,7 @@
     </resultMap>
 
     <select id="registerOption" resultType="persistence.dto.registerOption">
-        SELECT * FROM MENU
+        
     </select>
 
     <select id="registerMenu" resultType="persistence.dto.registerMenu">
