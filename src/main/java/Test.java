@@ -1,12 +1,12 @@
 import persistence.MyBatisConnectionFactory;
-import persistence.dao.MyMenuDAO;
+import persistence.dao.MenuManagementDAO;
 import persistence.dto.MenuDTO;
 import persistence.dto.UsersDTO;
 import java.util.List;
 
 public class Test {
     public static void main(String[] args) {
-        MyMenuDAO myMenuDAO = new MyMenuDAO(MyBatisConnectionFactory.getSqlSessionFactory());
+        MenuManagementDAO myMenuDAO = new MenuManagementDAO(MyBatisConnectionFactory.getSqlSessionFactory());
         UsersDTO usersDTO = new UsersDTO();
         usersDTO.setId("sorim");
 

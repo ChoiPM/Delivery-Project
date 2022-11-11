@@ -5,15 +5,13 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import persistence.dto.MenuDTO;
 import persistence.dto.UsersDTO;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-public class MyMenuDAO { //MyBatis 사용, 지워도 됨
+public class MenuManagementDAO {
     private final SqlSessionFactory sqlSessionFactory;
 
-    public MyMenuDAO(SqlSessionFactory sqlSessionFactory)
+    public MenuManagementDAO(SqlSessionFactory sqlSessionFactory)
     {
         this.sqlSessionFactory = sqlSessionFactory;
     }

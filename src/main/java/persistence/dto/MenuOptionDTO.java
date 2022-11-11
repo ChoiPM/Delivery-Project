@@ -12,6 +12,7 @@ public class MenuOptionDTO {
     private int menuOptionId;
     private String option;
     private String content;
+    private int price;
     private LocalDateTime createdDate;
     private LocalDateTime modifyDate;
     private String status;
