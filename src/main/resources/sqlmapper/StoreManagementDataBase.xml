@@ -49,11 +49,11 @@
         <result property = "status" column = "status"/>
     </resultMap>
 
-    <select id = "registerStore" resultType = "persistence.dto.registerStore">
+    <select id = "registerStore" resultMap = "store">
 
     </select>
 
-    <select id = "showStore" resultType = "persistence.dto.showStore">
+    <select id = "showStore" resultMap = "store">
         SELECT * FROM STORE
     </select>
 </mapper>

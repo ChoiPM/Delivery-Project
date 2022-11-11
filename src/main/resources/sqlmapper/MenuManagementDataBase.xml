@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.MenuMapper">
-    <resultMap id="result" type="MenuDTO">
+    <resultMap id="menu" type="MenuDTO">
         <result property="id" column="menu_id"/>
         <result property="category" column="category"/>
         <result property="name" column="name"/>
@@ -28,19 +28,19 @@
         <result property="status" column="status"/>
     </resultMap>
 
-    <select id="registerOption" resultType="persistence.dto.registerOption">
+    <select id="registerOption" resultMap="menu">
         
     </select>
 
-    <select id="registerMenu" resultType="persistence.dto.registerMenu">
+    <select id="registerMenu" resultMap="menu">
         SELECT * FROM MENU
     </select>
 
-    <select id="selectAll" resultType="persistence.dto.MenuDTO">
+    <select id="showAll" resultMap="menu">
         SELECT * FROM MENU
     </select>
 
-    <select id="modifyMenu" resultType="persistence.dto.modifyMenu">
+    <select id="modifyMenu" resultMap="menu">
         SELECT * FROM MENU
     </select>
 
