@@ -6,6 +6,7 @@ import persistence.dto.StoreDTO;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class StoreManagementDAO
 {
@@ -34,13 +35,14 @@ public class StoreManagementDAO
     }
 
     //매장조회
-    private List<StoreDTO> showStore()
+    public List<StoreDTO> showStore(Scanner sc)
     {
+        String storeName = sc.nextLine();
         List<StoreDTO> dtos = new ArrayList<>();
         SqlSession session = sqlSessionFactory.openSession();
         try
         {
-            dtos = session.selectList("mapper.StoreMapper.showStore");
+            dtos = session.selectList("mapper.StoreMapper.showStore", storeName);
             session.commit();
         }
         finally
