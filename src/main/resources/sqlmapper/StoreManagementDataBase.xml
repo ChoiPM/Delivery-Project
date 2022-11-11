@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "mapper.StoreMapper">
+    <resultMap id="store" type="StoreDTO">
+        <result property="name" column="name"/>
+        <result property="type" column="type"/>
+        <result property="foodCategory" column="food_category"/>
+        <result property="address" column="address"/>
+        <result property="picture" column="store_pic_url"/>
+        <result property="phoneNum" column="phone"/>
+        <result property="content" column="content"/>
+        <result property="minDeliveryPrice" column="min_delivery_price"/>
+        <result property="deliveryTip" column="delivery_tip"/>
+        <result property="deliveryTime" column="delivery_time"/>
+        <result property="rating" column="rating"/>
+        <result property="likeCnt" column="likes_cnt"/>
+        <result property="reviewCnt" column="review_cnt"/>
+        <result property="operationHour" column="operation_hour"/>
+        <result property="closedDay" column="closed_days"/>
+        <result property="deliveryRange" column="delivery_range"/>
+        <result property="createdDate" column="created_date"/>
+        <result property="modifyDate" column="modified_date"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <resultMap id = "menu" type = "StoreDTO">
+        <result property = "storeId" column = "store_id"/>
+        <result property = "name" column = "name"/>
+        <result property = "type" column = "type"/>
+        <result property = "category" column = "food_category"/>
+        <result property = "address" column = "address"/>
+        <result property = "picture" column = "store_pic_url"/>
+        <result property = "phoneNum" column = "phone"/>
+        <result property = "content" column = "content"/>
+        <result property = "minDeliveryPrice" column = "min_delivery_price"/>
+        <result property = "deliveryTip" column = "delivery_tip"/>
+        <result property = "deliveryTime" column = "delivery_time"/>
+        <result property = "rating" column = "rating"/>
+        <result property = "likeCnt" column = "likes_cnt"/>
+        <result property = "reviewCnt" column = "review_cnt"/>
+        <result property = "operationHour" column = "operation_hour"/>
+        <result property = "closedDay" column = "closed_days"/>
+        <result property = "deliveryRange" column = "delivery_range"/>
+        <result property = "createdDate" column = "created_date"/>
+        <result property = "modifyDate" column = "modified_date"/>
+        <result property = "status" column = "status"/>
+    </resultMap>
+
+    <select id = "registerStore" resultType = "persistence.dto.registerStore">
+
+    </select>
+
+    <select id = "showStore" resultType = "persistence.dto.showStore">
+        SELECT * FROM STORE
+    </select>
+</mapper>

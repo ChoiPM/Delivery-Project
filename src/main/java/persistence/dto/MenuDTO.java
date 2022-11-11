@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @ToString
 
 public class MenuDTO {
-    private int id;
+    private int menuId;
     private String category;
     private String name;
     private int price;

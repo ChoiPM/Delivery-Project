@@ -9,13 +9,14 @@ import java.time.LocalDateTime;
 @ToString
 
 public class StoreDTO {
-    private int id;
+    private int storeId;
     private String name;
     private int type; //이거 머임?
-    private String category;
+    private String foodCategory;
     private String address;
     private String picture;
     private String phoneNum;
+    private String content;
     private int minDeliveryPrice;
     private int deliveryTip;
     private int deliveryTime;
