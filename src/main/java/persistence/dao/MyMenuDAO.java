@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class MyMenuDAO { //MyBatis 사용
+public class MyMenuDAO { //MyBatis 사용, 지워도 됨
     private final SqlSessionFactory sqlSessionFactory;
 
     public MyMenuDAO(SqlSessionFactory sqlSessionFactory)
