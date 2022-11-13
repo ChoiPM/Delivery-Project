@@ -2,15 +2,21 @@ import persistence.MyBatisConnectionFactory;
 import persistence.dao.MenuManagementDAO;
 import persistence.dao.StoreManagementDAO;
 import persistence.dto.MenuDTO;
+import persistence.dto.MenuOptionDTO;
 import persistence.dto.UsersDTO;
-import java.util.List;
+import persistence.dto.StoreDTO;
+import view.StoreView;
 
-import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.util.*;
 
 public class Test {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        StoreManagementDAO mmd = new StoreManagementDAO(MyBatisConnectionFactory.getSqlSessionFactory());
-        mmd.showStore(sc);
+        StoreView sv = new StoreView();
+
+        sv.insertMenu();
+        sv.findStore();
+
+
     }
 }

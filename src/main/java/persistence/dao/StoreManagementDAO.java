@@ -6,17 +6,17 @@ import persistence.dto.StoreDTO;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class StoreManagementDAO
 {
-    private final SqlSessionFactory sqlSessionFactory;
+    private static SqlSessionFactory sqlSessionFactory = null;
     public StoreManagementDAO(SqlSessionFactory sqlSessionFactory)
     {
         this.sqlSessionFactory = sqlSessionFactory;
     }
 
-    //매장등록
     public List<StoreDTO> registerStore()
     {
         List<StoreDTO> dtos = new ArrayList<>();
@@ -34,10 +34,24 @@ public class StoreManagementDAO
         return dtos;
     }
 
-    //매장조회
-    public List<StoreDTO> showStore(Scanner sc)
+    public static List<StoreDTO> registerStore(Map<String, Object> params)
     {
-        String storeName = sc.nextLine();
+        List<StoreDTO> dtos = null;
+        SqlSession session = sqlSessionFactory.openSession();
+        try
+        {
+            System.out.println("registStore");
+            dtos = session.selectList("mapper.StoreMapper.registerStore",params);
+        }
+        finally
+        {
+            session.close();
+        }
+        return dtos;
+    }
+    public List<StoreDTO> showStore(String str)
+    {
+        String storeName = str;
         List<StoreDTO> dtos = new ArrayList<>();
         SqlSession session = sqlSessionFactory.openSession();
         try

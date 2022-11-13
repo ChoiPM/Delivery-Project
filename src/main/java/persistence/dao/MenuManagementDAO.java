@@ -3,6 +3,7 @@ package persistence.dao;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import persistence.dto.MenuDTO;
+import persistence.dto.MenuOptionDTO;
 import persistence.dto.UsersDTO;
 
 import java.util.ArrayList;
@@ -16,14 +17,14 @@ public class MenuManagementDAO {
         this.sqlSessionFactory = sqlSessionFactory;
     }
 
-    //메뉴옵션 등록
+
     public List<MenuDTO> registerOption()
     {
         List<MenuDTO> dtos = new ArrayList<>();
         SqlSession session = sqlSessionFactory.openSession();
         try
         {
-            dtos = session.selectList("mapper.MenuMapper.registerOption"); //menu.xml에서 db 수정해야 함
+            dtos = session.selectList("mapper.MenuMapper.registerOption");
             session.commit();
         }
         finally
@@ -33,15 +34,13 @@ public class MenuManagementDAO {
         }
         return dtos;
     }
-
-    //메뉴 등록
     public List<MenuDTO> registerMenu()
     {
         List<MenuDTO> dtos = new ArrayList<>();
         SqlSession session = sqlSessionFactory.openSession();
         try
         {
-            dtos = session.selectList("mapper.MenuMapper.registerMenu"); //menu.xml에서 db 수정해야 함
+            dtos = session.selectList("mapper.MenuMapper.registerMenu");
             session.commit();
         }
         finally
@@ -52,8 +51,8 @@ public class MenuManagementDAO {
         return dtos;
     }
 
-    //전체 조회
-    public List<MenuDTO> selectAll(UsersDTO usersDTO)
+
+    public List<MenuDTO> selectAll(MenuDTO menuDTO)
     {
         List<MenuDTO> dtos = new ArrayList<>();
         SqlSession session = sqlSessionFactory.openSession();
@@ -68,7 +67,7 @@ public class MenuManagementDAO {
         return dtos;
     }
 
-    //메뉴 수정
+
     public List<MenuDTO> modifyMenu()
     {
         List<MenuDTO> dtos = new ArrayList<>();
@@ -85,5 +84,29 @@ public class MenuManagementDAO {
         }
         return dtos;
     }
+    public List<MenuOptionDTO> selectAll()
+    {
+        List<MenuOptionDTO> dtos = new ArrayList<>();
+        SqlSession session = sqlSessionFactory.openSession();
+        try
+        {
+            System.out.println("menuOption selectAll");
+            dtos = session.selectList("mapper.MenuMapper.selectAll");
+            session.commit();
+        }
+        finally
+        {
+            session.rollback();
+            session.close();
+        }
+        return dtos;
+    }
 
+    public  void printAll(List<MenuOptionDTO> dtos)
+    {
+        for(MenuOptionDTO dto:dtos)
+        {
+            System.out.println("dto.toString = " + dto.toString());
+        }
+    }
 }
