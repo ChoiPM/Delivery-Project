@@ -25,6 +25,7 @@
         <result property="pwd" column="Password"/>
         <result property="phone" column="phoneNum"/>
         <result property="email" column="email"/>
+        <result property="age" column="age"/>
     </resultMap>
 
 
