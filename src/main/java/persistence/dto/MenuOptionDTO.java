@@ -12,4 +12,5 @@ public class MenuOptionDTO {
     private int menuOptionId;
     private String option;
     private int price;
+    private int storeId;
 }

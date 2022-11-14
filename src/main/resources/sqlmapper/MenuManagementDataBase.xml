@@ -8,12 +8,15 @@
         <result property="id" column="menu_id"/>
         <result property="category" column="category"/>
         <result property="name" column="name"/>
+        <result property="stock" column="stock"/>
         <result property="price" column="price"/>
         <result property="storeId" column="store_store_id"/>
+        <result property="optionNum" column="optionNum"/>
     </resultMap>
 
     <resultMap id="option" type="MenuOptionDTO">
         <result property="menuOptionId" column="menu_option_id"/>
+        <result property="storeId" column="store_store_id"/>
         <result property="option" column="option"/>
         <result property="price" column="price"/>
     </resultMap>

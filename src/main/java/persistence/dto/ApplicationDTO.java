@@ -11,7 +11,7 @@ public class ApplicationDTO {
     private String text;
     private int approve;
     private String reason;
-//    private bool check;
+    private boolean check;
     private int menuId;
     private int storeId;
 }
