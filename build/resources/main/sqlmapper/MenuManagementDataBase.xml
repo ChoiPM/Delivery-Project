@@ -22,9 +22,10 @@
 
     </select>
 
-    <select id="registerMenu" resultMap="menu">
-        SELECT * FROM MENU
-    </select>
+    <insert id="registerMenu">
+        INSERT INTO menu(menu_id, category, name, price, menu_pic_url, popularity, created_date, modified_date, status, content, store_store_id)
+        VALUES(#{id}, #{category}, #{name}, #{price}, #{picture}, #{popularity}, #{created}, #{modified}, #{status}, #{content}, #{storeId});
+    </insert>
 
     <select id="showAll" resultMap="menu">
         SELECT * FROM MENU

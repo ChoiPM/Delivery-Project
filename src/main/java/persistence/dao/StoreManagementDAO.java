@@ -16,6 +16,22 @@ public class StoreManagementDAO
         this.sqlSessionFactory = sqlSessionFactory;
     }
 
+    public static List<StoreDTO> showAll() {
+        List<StoreDTO> dtos = new ArrayList<>();
+        SqlSession session = sqlSessionFactory.openSession();
+        try
+        {
+            dtos = session.selectList("mapper.StoreMapper.showAll");
+            session.commit();
+        }
+        finally
+        {
+            session.rollback();
+            session.close();
+        }
+        return dtos;
+    }
+
     public List<StoreDTO> registerStore()
     {
         List<StoreDTO> dtos = new ArrayList<>();
@@ -48,14 +64,15 @@ public class StoreManagementDAO
         }
         return dtos;
     }
-    public List<StoreDTO> showStore(String str)
+
+    public List<StoreDTO> selectStore(String str)
     {
         String storeName = str;
         List<StoreDTO> dtos = new ArrayList<>();
         SqlSession session = sqlSessionFactory.openSession();
         try
         {
-            dtos = session.selectList("mapper.StoreMapper.showStore", storeName);
+            dtos = session.selectList("mapper.StoreMapper.selectStore", storeName);
             session.commit();
         }
         finally
@@ -65,4 +82,5 @@ public class StoreManagementDAO
         }
         return dtos;
     }
+
 }
