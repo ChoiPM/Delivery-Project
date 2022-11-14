@@ -1,9 +1,6 @@
 import persistence.MyBatisConnectionFactory;
-import persistence.dao.MenuManagementDAO;
+import persistence.dao.ReviewManagementDAO;
 import persistence.dao.StoreManagementDAO;
-import persistence.dto.MenuDTO;
-import persistence.dto.UsersDTO;
-import java.util.List;
 
 import java.util.Scanner;
 
@@ -12,5 +9,8 @@ public class Test {
         Scanner sc = new Scanner(System.in);
         StoreManagementDAO mmd = new StoreManagementDAO(MyBatisConnectionFactory.getSqlSessionFactory());
         mmd.showStore(sc);
+
+        ReviewManagementDAO rmd = new ReviewManagementDAO(MyBatisConnectionFactory.getSqlSessionFactory());
+        rmd.writeReview();
     }
 }
