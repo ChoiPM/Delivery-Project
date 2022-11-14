@@ -17,6 +17,7 @@
         <result property="menuOptionId" column="menu_option_id"/>
         <result property="option" column="option"/>
         <result property="price" column="price"/>
+        <result property="storeId" column="store_store_id"/>
     </resultMap>
 
     <resultMap id="user" type="UsersDTO">
