@@ -1,0 +1,25 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.ReviewMapper">
+    <resultMap id="review" type="ReviewDTO">
+        <result property="id" column="review_id"/>
+        <result property="rating" column="rating"/>
+        <result property="content" column="content"/>
+        <result property="menuId" column="menu_menu_id"/>
+        <result property="storeId" column="store_store_id"/>
+        <result property="userId" column="user_user_id"/>
+    </resultMap>
+
+    <select id="writeReview" resultMap="review">
+        INSERT INTO REVIEW (review_id, rating, content, menu_menu_id, store_store_id, users_user_id)
+            VALUES ({review_id}, {rating}, {content}, {menu_menu_id}, {store_store_id}, {users_user_id})
+    </select>
+
+    <select id="showReview" resultMap="review">
+        SELECT * FROM REVIEW
+    </select>
+
+</mapper>

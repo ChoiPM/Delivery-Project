@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.OrderMapper">
+    <resultMap id="order" type="OrderDTO">
+        <result property="orderId" column="order_id"/>
+        <result property="totalPrice" column="total_price"/>
+        <result property="menuId" column="order_menu_menu_menu_id"/>
+        <result property="menuOptionId" column="order_menu_menu_option_menu_option_id"/>
+        <result property="storeId" column="store_store_id"/>
+        <result property="userId" column="user_user_id"/>
+    </resultMap>
+
+    <resultMap id="option" type="MenuOptionDTO">
+        <result property="menuOptionId" column="menu_option_id"/>
+        <result property="option" column="option"/>
+        <result property="price" column="price"/>
+    </resultMap>
+
+    <resultMap id="user" type="UsersDTO">
+        <result property="idNum" column="idNum"/>
+        <result property="id" column="id"/>
+        <result property="pwd" column="Password"/>
+        <result property="phone" column="phoneNum"/>
+        <result property="email" column="email"/>
+        <result property="age" column="age"/>
+    </resultMap>
+
+
+    <select id="createOrder" resultMap="order">
+
+    </select>
+
+    <select id="showOrder" resultMap="order">
+
+    </select>
+
+    <select id="cancelOrder" resultMap="order">
+
+    </select>
+
+    <select id="noMaterial" resultMap="order">
+
+    </select>
+
+    <select id="showOrderHistory" resultMap="order">
+
+    </select>
+
+</mapper>
