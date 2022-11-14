@@ -4,7 +4,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import persistence.dto.MenuDTO;
 import persistence.dto.MenuOptionDTO;
-import persistence.dto.UsersDTO;
 
 import java.util.ArrayList;
 import java.util.List;

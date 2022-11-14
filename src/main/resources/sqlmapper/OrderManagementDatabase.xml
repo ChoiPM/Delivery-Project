@@ -6,12 +6,7 @@
 <mapper namespace="mapper.OrderMapper">
     <resultMap id="order" type="OrderDTO">
         <result property="orderId" column="order_id"/>
-        <result property="payMethod" column="payment_method"/>
         <result property="totalPrice" column="total_price"/>
-        <result property="request" column="requests"/>
-        <result property="createdDate" column="created_date"/>
-        <result property="modifyDate" column="modified_date"/>
-        <result property="status" column="status"/>
         <result property="menuId" column="order_menu_menu_menu_id"/>
         <result property="menuOptionId" column="order_menu_menu_option_menu_option_id"/>
         <result property="storeId" column="store_store_id"/>
@@ -21,12 +16,17 @@
     <resultMap id="option" type="MenuOptionDTO">
         <result property="menuOptionId" column="menu_option_id"/>
         <result property="option" column="option"/>
-        <result property="content" column="content"/>
         <result property="price" column="price"/>
-        <result property="createdDate" column="created_date"/>
-        <result property="modifyDate" column="modified_date"/>
-        <result property="status" column="status"/>
     </resultMap>
+
+    <resultMap id="user" type="UsersDTO">
+        <result property="idNum" column="idNum"/>
+        <result property="id" column="id"/>
+        <result property="pwd" column="Password"/>
+        <result property="phone" column="phoneNum"/>
+        <result property="email" column="email"/>
+    </resultMap>
+
 
     <select id="createOrder" resultMap="order">
 

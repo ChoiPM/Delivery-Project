@@ -9,23 +9,13 @@
         <result property="category" column="category"/>
         <result property="name" column="name"/>
         <result property="price" column="price"/>
-        <result property="picture" column="menu_pic_url"/>
-        <result property="popularity" column="popularity"/>
-        <result property="created" column="created_date"/>
-        <result property="modified" column="modified_date"/>
-        <result property="status" column="status"/>
-        <result property="content" column="content"/>
         <result property="storeId" column="store_store_id"/>
     </resultMap>
 
-    <resultMap id="option" type="OptionDTO">
+    <resultMap id="option" type="MenuOptionDTO">
         <result property="menuOptionId" column="menu_option_id"/>
         <result property="option" column="option"/>
-        <result property="content" column="content"/>
         <result property="price" column="price"/>
-        <result property="createdDate" column="created_date"/>
-        <result property="modifyDate" column="modified_date"/>
-        <result property="status" column="status"/>
     </resultMap>
 
     <select id="registerOption" resultMap="menu">

@@ -1,8 +1,8 @@
 package persistence.dto;
 
-import lombok.*;
-
-import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
@@ -10,12 +10,7 @@ import java.time.LocalDateTime;
 
 public class OrderDTO {
     private int orderId;
-    private String payMethod;
     private int totalPrice;
-    private String request;
-    private LocalDateTime createdDate;
-    private LocalDateTime modifyDate;
-    private String status;
     private int menuId;
     private int menuOptionId;
     private int storeId;

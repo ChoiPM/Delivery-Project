@@ -1,8 +1,8 @@
 package persistence.dto;
 
-import lombok.*;
-
-import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
@@ -14,10 +14,4 @@ public class UsersDTO {
     private String password;
     private String phoneNum;
     private String email;
-    private String grade;
-    private String role;
-    private String address;
-    private LocalDateTime createdDate;
-    private LocalDateTime modifiedDate;
-    private String status;
 }

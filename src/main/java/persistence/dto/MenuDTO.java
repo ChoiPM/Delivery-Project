@@ -1,8 +1,8 @@
 package persistence.dto;
 
-import lombok.*;
-
-import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
@@ -13,12 +13,6 @@ public class MenuDTO {
     private String category;
     private String name;
     private int price;
-    private String picture; //사진 url은 없어도 될듯
-    private int popularity;
-    private LocalDateTime created;
-    private LocalDateTime modified;
-    private String status;
-    private String content;
     private int storeId;
 
 }
