@@ -8,11 +8,10 @@ import lombok.ToString;
 @Setter
 @ToString
 
-public class StoreDTO {
-    private int storeId;
+public class OwnerDTO {
+    private int idNum;
+    private int id;
+    private String password;
     private String name;
-    private String content;
-    private String address;
     private String phoneNum;
-    private int reviewCnt;
 }

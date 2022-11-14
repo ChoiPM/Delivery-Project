@@ -5,19 +5,25 @@
 
 <mapper namespace = "mapper.StoreMapper">
     <resultMap id="store" type="StoreDTO">
+        <result property="id" column="store_id"/>
         <result property="name" column="name"/>
+        <result property="content" column="content"/>
         <result property="address" column="address"/>
         <result property="phone" column="phoneNum"/>
-        <result property="content" column="content"/>
         <result property="reviewCnt" column="reviewCnt"/>
     </resultMap>
 
+    <resultMap id="owner" type="OwnerDTO">
+        <result property="idNum" column="idNum"/>
+        <result property="id" column="id"/>
+        <result property="pwd" column="password"/>
+        <result property="name" column="name"/>
+        <result property="phone" column="phoneNum"/>
+    </resultMap>
+
     <insert id = "registerStore" >
-        INSERT INTO STORE (store_id, name, type,food_category,address,phone,content,min_delivery_price,delivery_tip
-                    ,delivery_time,rating,likes_cnt,review_cnt,operation_hour,closed_days,delivery_range,status)
-        VALUES (#{store_id}, #{name},#{type} ,#{food_category},#{address},#{phone},#{content},#{min_delivery_price}
-                    ,#{delivery_tip},#{delivery_time},#{rating}, #{likes_cnt},#{review_cnt},#{operation_hour}
-                    ,#{closed_days},#{delivery_range},#{status});
+        INSERT INTO STORE (store_id, name, content, address, phone, review_cnt)
+            VALUES (#{store_id}, #{name}, #{content}, #{address}, #{phone}, #{review_cnt});
     </insert>
 
     <select id = "showStore" resultMap = "store">
