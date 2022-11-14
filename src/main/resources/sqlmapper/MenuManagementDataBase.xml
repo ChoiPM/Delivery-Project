@@ -4,8 +4,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.MenuMapper">
+    <resultMap id="store" type="StoreDTO">
+        <result property="StoreId" column="store_id"/>
+        <result property="name" column="name"/>
+        <result property="content" column="content"/>
+        <result property="address" column="address"/>
+        <result property="phone" column="phoneNum"/>
+        <result property="reviewCnt" column="reviewCnt"/>
+        <result property="check" column="check"/>
+    </resultMap>
+
     <resultMap id="menu" type="MenuDTO">
-        <result property="id" column="menu_id"/>
+        <result property="MenuId" column="menu_id"/>
         <result property="category" column="category"/>
         <result property="name" column="name"/>
         <result property="stock" column="stock"/>
@@ -27,8 +37,10 @@
     </insert>
 
     <insert id="registerMenu">
-        INSERT INTO menu(menu_id, category, name, price, menu_pic_url, popularity, created_date, modified_date, status, content, store_store_id)
-        VALUES(#{id}, #{category}, #{name}, #{price}, #{picture}, #{popularity}, #{created}, #{modified}, #{status}, #{content}, #{storeId});
+        <if test="check = true">
+            INSERT INTO menu(menu_id, category, name, price, menu_pic_url, popularity, created_date, modified_date, status, content, store_store_id)
+            VALUES(#{id}, #{category}, #{name}, #{price}, #{picture}, #{popularity}, #{created}, #{modified}, #{status}, #{content}, #{storeId});
+        </if>
     </insert>
 
     <select id="showAll" resultMap="menu">

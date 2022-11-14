@@ -18,9 +18,9 @@ public class MenuManagementDAO {
     }
 
 
-    public List<MenuDTO> registerOption()
+    public List<MenuOptionDTO> registerOption()
     {
-        List<MenuDTO> dtos = new ArrayList<>();
+        List<MenuOptionDTO> dtos = new ArrayList<>();
         SqlSession session = sqlSessionFactory.openSession();
         try
         {
