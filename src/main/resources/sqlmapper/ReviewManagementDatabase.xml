@@ -15,7 +15,7 @@
 
     <select id="writeReview" resultMap="review">
         INSERT INTO REVIEW (review_id, rating, content, menu_menu_id, store_store_id, users_user_id)
-            VALUES ({review_id}, {rating}, {content}, {menu_menu_id}, {store_store_id}, {users_user_id})
+        VALUES ({review_id}, {rating}, {content}, {menu_menu_id}, {store_store_id}, {users_user_id})
     </select>
 
     <select id="showReview" resultMap="review">

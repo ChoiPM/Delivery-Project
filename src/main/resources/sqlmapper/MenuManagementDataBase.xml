@@ -44,7 +44,9 @@
     </insert>
 
     <select id="showAll" resultMap="menu">
-        SELECT * FROM MENU
+        SELECT name, price, optionNum, stock
+        FROM MENU
+        ORDER BY category;
     </select>
 
     <select id="modifyMenu" resultMap="menu">
