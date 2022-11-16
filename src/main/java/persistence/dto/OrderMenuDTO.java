@@ -7,7 +7,9 @@ import lombok.*;
 @ToString
 
 public class OrderMenuDTO {
-    private int price;
-    private int menuId;
-    private int menuOptionId;
+    private Long orderMenu_id;
+    private int orderMenu_delivery;
+    private Long orderMenu_menuId;
+    private Long orderMenu_storeId;
+    private Long orderMenu_userId;
 }

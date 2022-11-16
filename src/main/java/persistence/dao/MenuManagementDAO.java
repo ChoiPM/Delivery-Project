@@ -3,8 +3,7 @@ package persistence.dao;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import persistence.dto.MenuDTO;
-import persistence.dto.MenuOptionDTO;
-import persistence.dto.UsersDTO;
+import persistence.dto.OrderOptionDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +17,9 @@ public class MenuManagementDAO {
     }
 
 
-    public List<MenuOptionDTO> registerOption()
+    public List<OrderOptionDTO> registerOption()
     {
-        List<MenuOptionDTO> dtos = new ArrayList<>();
+        List<OrderOptionDTO> dtos = new ArrayList<>();
         SqlSession session = sqlSessionFactory.openSession();
         try
         {
@@ -85,9 +84,9 @@ public class MenuManagementDAO {
         }
         return dtos;
     }
-    public List<MenuOptionDTO> selectAll()
+    public List<OrderOptionDTO> selectAll()
     {
-        List<MenuOptionDTO> dtos = new ArrayList<>();
+        List<OrderOptionDTO> dtos = new ArrayList<>();
         SqlSession session = sqlSessionFactory.openSession();
         try
         {
@@ -103,9 +102,9 @@ public class MenuManagementDAO {
         return dtos;
     }
 
-    public  void printAll(List<MenuOptionDTO> dtos)
+    public  void printAll(List<OrderOptionDTO> dtos)
     {
-        for(MenuOptionDTO dto:dtos)
+        for(OrderOptionDTO dto:dtos)
         {
             System.out.println("dto.toString = " + dto.toString());
         }

@@ -1,17 +1,16 @@
 package persistence.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
 @ToString
 
 public class OwnerDTO {
-    private int idNum;
-    private int id;
-    private String password;
-    private String name;
-    private String phoneNum;
+    private Long owner_id;
+    private String owner_loginId;
+    private String owner_name;
+    private String owner_pwd;
+    private Long owner_phone;
+    private String owner_email;
 }

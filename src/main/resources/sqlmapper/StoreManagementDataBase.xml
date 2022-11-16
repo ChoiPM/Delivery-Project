@@ -5,7 +5,7 @@
 
 <mapper namespace = "mapper.StoreMapper">
     <resultMap id="store" type="StoreDTO">
-        <result property="id" column="store_id"/>
+        <result property="storeId" column="store_id"/>
         <result property="name" column="name"/>
         <result property="content" column="content"/>
         <result property="address" column="address"/>
@@ -20,6 +20,11 @@
         <result property="pwd" column="password"/>
         <result property="name" column="name"/>
         <result property="phone" column="phoneNum"/>
+    </resultMap>
+
+    <resultMap id="application" type="ApplicationDTO">
+        <result property="idNum" column="application_iD"/>
+        <!--PLZ ADD COLUMN-->
     </resultMap>
 
     <select id="showAll" resultMap ="store">
