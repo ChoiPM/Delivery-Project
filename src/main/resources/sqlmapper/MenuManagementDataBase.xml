@@ -49,8 +49,28 @@
         ORDER BY category;
     </select>
 
-    <select id="modifyMenu" resultMap="menu">
-        SELECT * FROM MENU
-    </select>
+    <update id = "modifyMenu2params">
+        UPDATE menu SET
+        <if test="#{price} != null and #{name} != null">
+            name=#{name}, price=#{price}
+        </if>
+        WHERE menu_id= #{menuId};
+    </update>
+
+    <update id = "modifyMenuName">
+        UPDATE menu SET
+        <if test="#{name} != null">
+            name=#{name}
+        </if>
+        WHERE menu_id= #{menuId};
+    </update>
+
+    <update id = "modifyMenuPrice">
+        UPDATE menu SET
+        <if test="#{price} != null">
+            price=#{price}
+        </if>
+        WHERE menu_id= #{menuId};
+    </update>
 
 </mapper>
