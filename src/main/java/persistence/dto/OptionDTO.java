@@ -6,7 +6,7 @@ import lombok.*;
 @Setter
 @ToString
 
-public class optionDTO {
+public class OptionDTO {
     private Long option_id;
     private String option_name;
     private Long option_price;
