@@ -9,14 +9,12 @@ import lombok.ToString;
 @ToString
 
 public class OrderDTO {
-    private Long orderOption_id;
-    private Long orderOption_optionId;
-    private Long orderOption_storeId;
-    private Long orderOption_orderMenuId;
-
-    private Long orderMenu_id;
-    private int orderMenu_delivery;
-    private Long orderMenu_menuId;
-    private Long orderMenu_storeId;
-    private Long orderMenu_userId;
+    private Long order_id;
+    private Long order_totalPrice;
+    private int order_delivery;
+    private Long order_menuId;
+    private Long order_optionId1;
+    private Long order_optionId2;
+    private Long order_userId;
+    private Long order_storeId;
 }

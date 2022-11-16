@@ -14,6 +14,17 @@
         <result property="review_orderMenuId" column="review_orderMenuId"/>
     </resultMap>
 
+    <resultMap id="order" type="OrderDTO">
+        <result property="order_id" column="order_id"/>
+        <result property="order_totalPrice" column="order_totalPrice"/>
+        <result property="order_delivery" column="order_delivery"/>
+        <result property="order_menuId" column="order_menuId"/>
+        <result property="order_optionId1" column="order_optionId1"/>
+        <result property="order_optionId2" column="order_optionId2"/>
+        <result property="order_userId" column="order_userId"/>
+        <result property="order_storeId" column="order_storeId"/>
+    </resultMap>
+
     <resultMap id="orderMenu" type="OrderMenuDTO">
         <result property="orderMenu_id" column="orderMenu_id"/>
         <result property="orderMenu_delivery" column="orderMenu_delivery"/>
