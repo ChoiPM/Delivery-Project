@@ -17,8 +17,16 @@ public class MenuView
 
     public void printAll()
     {
+        MenuDTO md = new MenuDTO();
+        String option = md.getMenu_optionId();
+        String[] split = option.split(",");
+        int[] optionId = new int[split.length];
+        for(int i = 0; i < split.length; i++)
+        {
+            optionId[i] = Integer.parseInt(split[i]);
+        }
         List<MenuDTO> MDTOs = mmd.showAll();
-        MDTOs.stream().forEach(p->System.out.println(p.getMenu_category()+" | "+p.getMenu_id()+" | "+p.getMenu_name()+" | "+p.getMenu_price()));
+        MDTOs.stream().forEach(p->System.out.print(p.getMenu_category()+" | "+p.getMenu_id()+" | "+p.getMenu_name()+" | "+p.getMenu_price()));
     }
 
     public void modify_Menu()
@@ -140,7 +148,7 @@ public class MenuView
         String[] category = {"고기고기시리즈", "정식시리즈"};
         String[] name = {"돈까스도련님고기고기", "탕수육도련님고기고기", "새치 고기고기", "돈치 고기고기", "제육 김치찌개 정식", "제육 김치 부대찌개 정식", "돈치스팸 김치 부대찌개 정식"};
         int[] price = {6000, 5800, 6700, 5800, 8200, 8500, 8500};
-        String[] option = {"1,2,3,4", "1,2,3,4", "1,2,3,4", "1,2,3,4", "1,2,3,4", "1, 2", "1, 2"};
+        String[] option = {"1,2,3,4", "1,2,3,4", "1,2,3,4", "1,2,3,4", "1,2,3,4", "1,2", "1,2"};
         int[] stock = {10, 10, 10, 10, 10, 10, 1};
         for(int i = 0; i < name.length; i++)
         {
