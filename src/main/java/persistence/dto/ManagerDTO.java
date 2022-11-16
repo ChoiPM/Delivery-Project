@@ -11,6 +11,6 @@ public class ManagerDTO {
     private String manager_loginId;
     private String manager_name;
     private String manager_pwd;
-    private Long manager_phone;
+    private String manager_phone;
     private String manager_email;
 }

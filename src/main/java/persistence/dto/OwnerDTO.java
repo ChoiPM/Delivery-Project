@@ -11,6 +11,6 @@ public class OwnerDTO {
     private String owner_loginId;
     private String owner_name;
     private String owner_pwd;
-    private Long owner_phone;
+    private String owner_phone;
     private String owner_email;
 }

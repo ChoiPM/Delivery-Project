@@ -9,7 +9,7 @@ import lombok.*;
 public class StoreDTO {
     private Long store_id;
     private String store_name;
-    private Long store_phone;
+    private String store_phone;
     private String store_address;
     private String store_contents;
     private boolean store_registered;

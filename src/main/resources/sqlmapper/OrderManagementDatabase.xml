@@ -4,6 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.OrderMapper">
+    <resultMap id="'order" type="OrderDTO">
+        <result property="order_id" column="order_id"/>
+
+    </resultMap>
+
     <resultMap id="orderMenu" type="OrderMenuDTO">
         <result property="orderMenu_id" column="orderMenu_id"/>
         <result property="orderMenu_delivery" column="orderMenu_delivery"/>
