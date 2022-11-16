@@ -1,19 +1,17 @@
 package persistence.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
 @ToString
 
 public class MenuDTO {
-    private int menuId;
-    private String category;
-    private String name;
-    private int price;
-    private int stock;
-    private int storeId;
-    private int optionNum;
+    private Long menu_id;
+    private String menu_name;
+    private String menu_category;
+    private Long menu_price;
+    private int menu_stock;
+    private Long menu_storeId;
+    private Long menu_optionId;
 }
