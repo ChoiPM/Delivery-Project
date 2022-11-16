@@ -35,45 +35,50 @@
         <result property="orderOption_orderMenuId" column="orderOption_orderMenuId"/>
     </resultMap>
 
-    <resultMap id="user" type="UserDTO">
-        <result property="user_id" column="user_id"/>
-        <result property="user_loginId" column="user_loginId"/>
-        <result property="user_name" column="user_name"/>
-        <result property="user_pwd" column="user_pwd"/>
-        <result property="user_phone" column="user_phone"/>
-        <result property="user_email" column="user_email"/>
-        <result property="user_age" column="user_age"/>
-    </resultMap>
-
-    <resultMap id="store" type="StoreDTO">
-        <result property="store_id" column="store_id"/>
-        <result property="store_name" column="store_name"/>
-        <result property="store_phone" column="store_phone"/>
-        <result property="store_address" column="store_address"/>
-        <result property="store_contents" column="store_contents"/>
-        <result property="store_registered" column="store_registered"/>
-        <result property="store_reviewCnt" column="store_reviewCnt"/>
-        <result property="store_ownerId" column="store_ownerId"/>
-    </resultMap>
-
     <select id="createOrder" resultMap="order">
-
+        INSERT INTO ORDER (order_userId, order_menuId, order_optionId1, order_optionId2)
+        VALUES (#{order_userId}, #{order_menuId}, #{order_optionId1}, #{order_optionId2})
     </select>
-
+    <select id="orderMenu" resultMap="order">
+        INSERT INTO ORDERMENU (orderMenu_menuId, orderMenu_storeId, orderMenu_userId)
+        VALUES (#{orderMenu_menuId}, #{orderMenu_storeId}, #{orderMenu_userId})
+    </select>
+    <select id="orderOption" resultMap="order">
+        INSERT INTO ORDER (orderOption_optionId, orderOption_storeId, orderOption_orderMenuId)
+        VALUES (#{orderOption_optionId}, #{orderOption_storeId}, #{orderOption_orderMenuId})
+    </select>
     <select id="showOrder" resultMap="order">
-
+        SELECT  om.user_name, om.menu_name, group_concat(oo.optionName),
+               om.menu_price+sum(oo.option_price) AS "total", om.order_delivery
+        FROM    orderMenu om, orderOption oo
+        ON      om.orderMenu_menuId = oo.orderOption_orderMenuId
+        GROUP BY orderOption_orderMenuId
     </select>
+
+    <update id="receiptOrder">
+        UPDATE  orderMenu
+        SET     delivey='배달중'
+        WHERE   order_id = #{order_id}
+    </update>
+    <update id="stockMinus">
+        UPDATE  orderMenu
+        SET     stock = stock - 1;
+        WHERE   Menu_id = #{Menu_id}
+    </update>
 
     <select id="cancelOrder" resultMap="order">
-
-    </select>
-
-    <select id="noMaterial" resultMap="order">
-
+        <set>
+            <if test='order_delivery.equals("접수대기")'>
+                delivey='취소'
+            </if>
+        </set>
     </select>
 
     <select id="showOrderHistory" resultMap="order">
-
+        SELECT  om.user_name, om.menu_name, group_concat(oo.optionName),
+                om.menu_price+sum(oo.option_price) AS "total", om.order_delivery
+        FROM    orderMenu om, orderOption oo
+            ON      om.orderMenu_menuId = oo.orderOption_orderMenuId
+        GROUP BY orderOption_orderMenuId
     </select>
-
 </mapper>
