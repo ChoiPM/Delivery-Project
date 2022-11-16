@@ -3,7 +3,7 @@ package persistence.dto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
+//이걸 쓰나 마나... 흐음 안 쓸 것 같기도
 @Getter
 @Setter
 @ToString

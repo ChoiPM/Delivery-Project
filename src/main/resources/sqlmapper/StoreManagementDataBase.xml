@@ -5,21 +5,39 @@
 
 <mapper namespace = "mapper.StoreMapper">
     <resultMap id="store" type="StoreDTO">
-        <result property="storeId" column="store_id"/>
-        <result property="name" column="name"/>
-        <result property="content" column="content"/>
-        <result property="address" column="address"/>
-        <result property="phone" column="phoneNum"/>
-        <result property="reviewCnt" column="reviewCnt"/>
-        <result property="check" column="check"/>
+        <result property="store_id" column="store_id"/>
+        <result property="store_name" column="store_name"/>
+        <result property="store_phone" column="store_phone"/>
+        <result property="store_address" column="store_address"/>
+        <result property="store_contents" column="store_contents"/>
+        <result property="store_registered" column="store_registered"/>
+        <result property="store_reviewCnt" column="store_reviewCnt"/>
+        <result property="store_ownerId" column="store_ownerId"/>
     </resultMap>
 
     <resultMap id="owner" type="OwnerDTO">
-        <result property="idNum" column="idNum"/>
-        <result property="id" column="id"/>
-        <result property="pwd" column="password"/>
-        <result property="name" column="name"/>
-        <result property="phone" column="phoneNum"/>
+        <result property="orwner_id" column="orwner_id"/>
+        <result property="owner_loginUd" column="owner_loginUd"/>
+        <result property="owner_name" column="owner_name"/>
+        <result property="owner_pwd" column="owner_pwd"/>
+        <result property="owner_phone" column="owner_phone"/>
+        <result property="owner_email" column="owner_email"/>
+    </resultMap>
+
+    <resultMap id="manager" type="ManagerDTO">
+        <result property="manager_id" column="manager_id"/>
+        <result property="manager_name" column="manager_name"/>
+        <result property="manager_pwd" column="manager_pwd"/>
+        <result property="manager_phone" column="manager_phone"/>
+        <result property="manager_email" column="manager_email"/>
+    </resultMap>
+
+    <resultMap id="register" type="RegisterDTO">
+        <result property="register_id" column="register_id"/>
+        <result property="register_approved" column="register_approved"/>
+        <result property="register_reason" column="register__reason"/>
+        <result property="register_managerId" column="register_managerId"/>
+        <result property="register_storeId" column="register_storeId"/>
     </resultMap>
 
     <resultMap id="application" type="ApplicationDTO">
