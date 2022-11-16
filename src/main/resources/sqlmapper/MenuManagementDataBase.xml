@@ -25,7 +25,7 @@
         <result property="menu_optionId" column="menu_optionId"/>
     </resultMap>
 
-    <resultMap id="option" type="MenuOptionDTO">
+    <resultMap id="menu_option" type="OptionDTO">
         <result property="option_id" column="option_id"/>
         <result property="option_name" column="option_name"/>
         <result property="option_price" column="option_price"/>
@@ -49,21 +49,19 @@
     </resultMap>
 
     <insert id="registerOption">
-        INSERT INTO option(menu_option_id, store_store_id, option, price)
-        VALUES(#{menuOptionId}, #{storeId}, #{option}, #{price});
+        INSERT INTO menu_option(option_name, option_price)
+        VALUES(#{option_name}, #{option_price});
     </insert>
 
     <insert id="registerMenu">
-        <if test="check = true">
-            INSERT INTO menu(menu_id, category, name, price, menu_pic_url, popularity, created_date, modified_date, status, content, store_store_id)
-            VALUES(#{id}, #{category}, #{name}, #{price}, #{picture}, #{popularity}, #{created}, #{modified}, #{status}, #{content}, #{storeId});
-        </if>
+            INSERT INTO menu(menu_id, menu_category, menu_name, menu_price, menu_stock, menu_optionId)
+            VALUES(#{menu_id}, #{menu_category}, #{menu_name}, #{menu_price}, #{menu_stock}, #{menu_optionId});
     </insert>
 
     <select id="showAll" resultMap="menu">
-        SELECT name, price, optionNum, stock
-        FROM MENU
-        ORDER BY category;
+        SELECT m.option_name, m.menu_price, o.option_name, m.menu_stock
+        FROM MENU m, MENU_OPTION o
+        ORDER BY m.menu_category;
     </select>
 
     <update id = "modifyMenu2params">

@@ -4,13 +4,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import persistence.PooledDataSource;
 import persistence.dto.MenuDTO;
-<<<<<<< HEAD
-import persistence.dto.MenuOptionDTO;
+import persistence.dto.OptionDTO;
 import persistence.dto.StoreDTO;
-import persistence.dto.UsersDTO;
-=======
-import persistence.dto.OrderOptionDTO;
->>>>>>> 56afb1bc15315c5e3a9110283865342f66741795
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -32,16 +27,9 @@ public class MenuManagementDAO {
         this.sqlSessionFactory = sqlSessionFactory;
     }
 
-<<<<<<< HEAD
     public List<MenuDTO> registerMenu(Map<String, Object> params)
     {
         List<MenuDTO> dtos = null;
-=======
-
-    public List<OrderOptionDTO> registerOption()
-    {
-        List<OrderOptionDTO> dtos = new ArrayList<>();
->>>>>>> 56afb1bc15315c5e3a9110283865342f66741795
         SqlSession session = sqlSessionFactory.openSession();
         try
         {
@@ -86,6 +74,8 @@ public class MenuManagementDAO {
     }
     public List<MenuDTO> modifyMenuName(Map<String, Object> params)
     {
+        MenuDTO md = new MenuDTO();
+        String option = md.getMenu_optionId();
         List<MenuDTO> dtos = null;
         SqlSession session = sqlSessionFactory.openSession();
         try
@@ -120,27 +110,7 @@ public class MenuManagementDAO {
         SqlSession session = sqlSessionFactory.openSession();
         try
         {
-<<<<<<< HEAD
             System.out.println("menu selectAll");
-=======
-            dtos = session.selectList("mapper.MenuMapper.modifyMenu");
-            session.commit();
-        }
-        finally
-        {
-            session.rollback();
-            session.close();
-        }
-        return dtos;
-    }
-    public List<OrderOptionDTO> selectAll()
-    {
-        List<OrderOptionDTO> dtos = new ArrayList<>();
-        SqlSession session = sqlSessionFactory.openSession();
-        try
-        {
-            System.out.println("menuOption selectAll");
->>>>>>> 56afb1bc15315c5e3a9110283865342f66741795
             dtos = session.selectList("mapper.MenuMapper.selectAll");
             session.commit();
         }
@@ -151,14 +121,13 @@ public class MenuManagementDAO {
         }
         return dtos;
     }
-    public List<MenuOptionDTO> RegisterOption(Map<String, Object> params)
+    public List<OptionDTO> RegisterOption(Map<String, Object> params)
     {
-        List<MenuOptionDTO> dtos = null;
+        List<OptionDTO> dtos = null;
         SqlSession session = sqlSessionFactory.openSession();
         try
         {
-            System.out.println("registMenuOption");
-            dtos = session.selectList("mapper.MenuMapper.registerMenuOption",params);
+            dtos = session.selectList("mapper.MenuMapper.registerOption",params);
         }
         finally
         {
@@ -168,9 +137,9 @@ public class MenuManagementDAO {
     }
 
 
-    public  void printAll(List<OrderOptionDTO> dtos)
+    public  void printAll(List<OptionDTO> dtos)
     {
-        for(OrderOptionDTO dto:dtos)
+        for(OptionDTO dto:dtos)
         {
             System.out.println("dto.toString = " + dto.toString());
         }

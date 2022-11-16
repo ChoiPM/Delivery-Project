@@ -5,17 +5,65 @@
 
 <mapper namespace="mapper.ReviewMapper">
     <resultMap id="review" type="ReviewDTO">
-        <result property="id" column="review_id"/>
-        <result property="rating" column="rating"/>
-        <result property="content" column="content"/>
-        <result property="menuId" column="menu_menu_id"/>
-        <result property="storeId" column="store_store_id"/>
-        <result property="userId" column="user_user_id"/>
+        <result property="review_id" column="review_id"/>
+        <result property="review_rating" column="review_rating"/>
+        <result property="review_contents" column="review_contents"/>
+        <result property="review_userId" column="review_userId"/>
+        <result property="review_storeId" column="review_storeId"/>
+        <result property="review_orderOptionId" column="review_orderOptionId"/>
+        <result property="review_orderMenuId" column="review_orderMenuId"/>
+    </resultMap>
+
+    <resultMap id="order" type="OrderDTO">
+        <result property="order_id" column="order_id"/>
+        <result property="order_totalPrice" column="order_totalPrice"/>
+        <result property="order_delivery" column="order_delivery"/>
+        <result property="order_menuId" column="order_menuId"/>
+        <result property="order_optionId1" column="order_optionId1"/>
+        <result property="order_optionId2" column="order_optionId2"/>
+        <result property="order_userId" column="order_userId"/>
+        <result property="order_storeId" column="order_storeId"/>
+    </resultMap>
+
+    <resultMap id="orderMenu" type="OrderMenuDTO">
+        <result property="orderMenu_id" column="orderMenu_id"/>
+        <result property="orderMenu_delivery" column="orderMenu_delivery"/>
+        <result property="orderMenu_menuId" column="orderMenu_menuId"/>
+        <result property="orderMenu_storeId" column="orderMenu_storeId"/>
+        <result property="orderMenu_userId" column="orderMenu_userId"/>
+    </resultMap>
+
+    <resultMap id="orderOption" type="OrderOptionDTO">
+        <result property="orderOption_id" column="orderOption_id"/>
+        <result property="orderOption_optionId" column="orderOption_optionId"/>
+        <result property="orderOption_storeId" column="orderOption_storeId"/>
+        <result property="orderOption_orderMenuId" column="orderOption_orderMenuId"/>
+    </resultMap>
+
+    <resultMap id="user" type="UserDTO">
+        <result property="user_id" column="user_id"/>
+        <result property="user_loginId" column="user_loginId"/>
+        <result property="user_name" column="user_name"/>
+        <result property="user_pwd" column="user_pwd"/>
+        <result property="user_phone" column="user_phone"/>
+        <result property="user_email" column="user_email"/>
+        <result property="user_age" column="user_age"/>
+    </resultMap>
+
+    <resultMap id="store" type="StoreDTO">
+        <result property="store_id" column="store_id"/>
+        <result property="store_name" column="store_name"/>
+        <result property="store_phone" column="store_phone"/>
+        <result property="store_address" column="store_address"/>
+        <result property="store_contents" column="store_contents"/>
+        <result property="store_registered" column="store_registered"/>
+        <result property="store_reviewCnt" column="store_reviewCnt"/>
+        <result property="store_ownerId" column="store_ownerId"/>
     </resultMap>
 
     <select id="writeReview" resultMap="review">
         INSERT INTO REVIEW (review_id, rating, content, menu_menu_id, store_store_id, users_user_id)
-            VALUES ({review_id}, {rating}, {content}, {menu_menu_id}, {store_store_id}, {users_user_id})
+        VALUES ({review_id}, {rating}, {content}, {menu_menu_id}, {store_store_id}, {users_user_id})
     </select>
 
     <select id="showReview" resultMap="review">

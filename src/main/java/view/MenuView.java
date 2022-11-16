@@ -4,7 +4,7 @@ import persistence.MyBatisConnectionFactory;
 import persistence.dao.MenuManagementDAO;
 import persistence.dao.StoreManagementDAO;
 import persistence.dto.MenuDTO;
-import persistence.dto.MenuOptionDTO;
+import persistence.dto.OptionDTO;
 import persistence.dto.StoreDTO;
 
 import java.time.LocalDateTime;
@@ -14,10 +14,11 @@ public class MenuView
 {
     Scanner sc = new Scanner(System.in);
     MenuManagementDAO mmd = new MenuManagementDAO(MyBatisConnectionFactory.getSqlSessionFactory());
+
     public void printAll()
     {
         List<MenuDTO> MDTOs = mmd.showAll();
-        MDTOs.stream().forEach(p->System.out.println(p.getCategory()+" | "+p.getMenuId()+" | "+p.getName()+" | "+p.getPrice()));
+        MDTOs.stream().forEach(p->System.out.println(p.getMenu_category()+" | "+p.getMenu_id()+" | "+p.getMenu_name()+" | "+p.getMenu_price()));
     }
 
     public void modify_Menu()
@@ -30,14 +31,14 @@ public class MenuView
         List<MenuDTO> menu_post=mmd.selectAll();
         for(MenuDTO i:menu_post)
         {
-            String str=i.getCategory();
+            String str=i.getMenu_category();
             sb.append(str);
             sb.append(" ");
         }
         List<MenuDTO> category_post=mmd.selectAll();
         for(MenuDTO i:category_post)
         {
-            String str=Integer.toString(i.getMenuId())+" "+i.getName()+" ";
+            String str=Long.toString(i.getMenu_id())+" "+i.getMenu_name()+" ";
             sb2.append(str);
             sb2.append(" ");
         }
@@ -46,19 +47,19 @@ public class MenuView
         // System.out.println("check menu category"+sb);
         // String foodCategory = sc.nextLine();
 
-        System.out.println("select Number: "+sb2);
-        int fNum = sc.nextInt();
+        // System.out.println("select Number: "+sb2);
+        int fNum = 97;
 
         System.out.println("1. modify just menu name 2. modify just menu price, 3. modify all");
         int menuNum=sc.nextInt();
 
-        String menuName = "";
-        int menuPrice=0;
+        String menuName = "돈까스고기고기";
+        int menuPrice=6500;
         sc.nextLine();
         if(menuNum==1)
         {
             System.out.println("modify menu name");
-            menuName = sc.nextLine();
+            //   menuName = sc.nextLine();
 
             params.put("m_name",menuName);
             params.put("menuId",fNum );
@@ -70,7 +71,7 @@ public class MenuView
         else if(menuNum==2)
         {
             System.out.println("modify menu price");
-            menuPrice = sc.nextInt();
+            // menuPrice = sc.nextInt();
 
             params.put("price", menuPrice);
             params.put("menuId",fNum );
@@ -81,9 +82,9 @@ public class MenuView
         else if(menuNum==3)
         {
             System.out.println("modify menu name");
-            menuName = sc.nextLine();
+            //   menuName = sc.nextLine();
             System.out.println("modify menu price");
-            menuPrice = sc.nextInt();
+            //    menuPrice = sc.nextInt();
 
 
             params.put("m_name",menuName);
@@ -118,14 +119,13 @@ public class MenuView
     public void registerOption()
     {
         Map params = new HashMap<String, Object>();
-        String[] name = {"a", "b", "c", "d"};
+        String[] name = {"한솥밥 곱빼기", "현미밥 교체", "계란후라이", "청양고추"};
         int[] price = {400, 1000, 1000, 300};
 
-
-        List<MenuOptionDTO> posts = null;
+        List<OptionDTO> posts = null;
         for(int i = 0; i < name.length; i++) {
-            params.put("option", name[i]);
-            params.put("price", price[i]);
+            params.put("option_name", name[i]);
+            params.put("option_price", price[i]);
 
             posts = mmd.RegisterOption(params);
         }
@@ -136,7 +136,7 @@ public class MenuView
     public void registerMenu()
     {
         Map params = new HashMap<String, Object>();
-        List<MenuOptionDTO> posts = null;
+        List<OptionDTO> posts = null;
         String[] category = {"고기고기시리즈", "정식시리즈"};
         String[] name = {"돈까스도련님고기고기", "탕수육도련님고기고기", "새치 고기고기", "돈치 고기고기", "제육 김치찌개 정식", "제육 김치 부대찌개 정식", "돈치스팸 김치 부대찌개 정식"};
         int[] price = {6000, 5800, 6700, 5800, 8200, 8500, 8500};
@@ -146,20 +146,20 @@ public class MenuView
         {
             if(i <= 3)
             {
-                params.put("category", category[0]);
-                params.put("m_name", name[i]);
-                params.put("price", price[i]);
-                //       params.put("optionNum", option[i]);
-                //       params.put("stock", stock[i]);
+                params.put("menu_category", category[0]);
+                params.put("menu_name", name[i]);
+                params.put("menu_price", price[i]);
+                params.put("menu_optionId", option[i]);
+                params.put("menu_stock", stock[i]);
 
             }
             else
             {
-                params.put("category", category[1]);
-                params.put("m_name", name[i]);
-                params.put("price", price[i]);
-                //     params.put("optionNum", option[i]);
-                //     params.put("stock", stock[i]);
+                params.put("menu_category", category[1]);
+                params.put("menu_name", name[i]);
+                params.put("menu_price", price[i]);
+                params.put("menu_optionId", option[i]);
+                params.put("menu_stock", stock[i]);
             }
             posts = mmd.registerMenu(params);
             //   posts.stream().forEach(p-> System.out.println(p.toString()));

@@ -4,35 +4,88 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.MenuMapper">
+    <resultMap id="store" type="StoreDTO">
+        <result property="store_id" column="store_id"/>
+        <result property="store_name" column="store_name"/>
+        <result property="store_phone" column="store_phone"/>
+        <result property="store_address" column="store_address"/>
+        <result property="store_contents" column="store_contents"/>
+        <result property="store_registered" column="store_registered"/>
+        <result property="store_reviewCnt" column="store_reviewCnt"/>
+        <result property="store_ownerId" column="store_ownerId"/>
+    </resultMap>
+
     <resultMap id="menu" type="MenuDTO">
-        <result property="id" column="menu_id"/>
-        <result property="category" column="category"/>
-        <result property="name" column="name"/>
-        <result property="price" column="price"/>
-        <result property="storeId" column="store_store_id"/>
+        <result property="menu_id" column="menu_id"/>
+        <result property="menu_name" column="menu_name"/>
+        <result property="menu_category" column="menu_category"/>
+        <result property="menu_price" column="menu_price"/>
+        <result property="menu_stock" column="menu_stock"/>
+        <result property="menu_storeId" column="menu_storeId"/>
+        <result property="menu_optionId" column="menu_optionId"/>
     </resultMap>
 
-    <resultMap id="option" type="MenuOptionDTO">
-        <result property="menuOptionId" column="menu_option_id"/>
-        <result property="option" column="option"/>
-        <result property="price" column="price"/>
+    <resultMap id="menu_option" type="OptionDTO">
+        <result property="option_id" column="option_id"/>
+        <result property="option_name" column="option_name"/>
+        <result property="option_price" column="option_price"/>
+        <result property="option_storeId" column="option_storeId"/>
     </resultMap>
 
-    <select id="registerOption" resultMap="menu">
+    <resultMap id="register" type="RegisterDTO">
+        <result property="register_id" column="register_id"/>
+        <result property="register_contents" column="register_contents"/>
+        <result property="register_approved" column="register_approved"/>
+        <result property="register_reason" column="register_reason"/>
+        <result property="register_managerId" column="register_managerId"/>
+    </resultMap>
 
-    </select>
+    <resultMap id="manager" type="ManagerDTO">
+        <result property="manager_id" column="manager_id"/>
+        <result property="manager_name" column="manager_name"/>
+        <result property="manager_pwd" column="manager_pwd"/>
+        <result property="manager_phone" column="manager_phone"/>
+        <result property="manager_email" column="manager_email"/>
+    </resultMap>
+
+    <insert id="registerOption">
+        INSERT INTO menu_option(option_name, option_price)
+        VALUES(#{option_name}, #{option_price});
+    </insert>
 
     <insert id="registerMenu">
-        INSERT INTO menu(menu_id, category, name, price, menu_pic_url, popularity, created_date, modified_date, status, content, store_store_id)
-        VALUES(#{id}, #{category}, #{name}, #{price}, #{picture}, #{popularity}, #{created}, #{modified}, #{status}, #{content}, #{storeId});
+            INSERT INTO menu(menu_id, menu_category, menu_name, menu_price, menu_stock, menu_optionId)
+            VALUES(#{menu_id}, #{menu_category}, #{menu_name}, #{menu_price}, #{menu_stock}, #{menu_optionId});
     </insert>
 
     <select id="showAll" resultMap="menu">
-        SELECT * FROM MENU
+        SELECT m.option_name, m.menu_price, o.option_name, m.menu_stock
+        FROM MENU m, MENU_OPTION o
+        ORDER BY m.menu_category;
     </select>
 
-    <select id="modifyMenu" resultMap="menu">
-        SELECT * FROM MENU
-    </select>
+    <update id = "modifyMenu2params">
+        UPDATE menu SET
+        <if test="#{price} != null and #{name} != null">
+            name=#{name}, price=#{price}
+        </if>
+        WHERE menu_id= #{menuId};
+    </update>
+
+    <update id = "modifyMenuName">
+        UPDATE menu SET
+        <if test="#{name} != null">
+            name=#{name}
+        </if>
+        WHERE menu_id= #{menuId};
+    </update>
+
+    <update id = "modifyMenuPrice">
+        UPDATE menu SET
+        <if test="#{price} != null">
+            price=#{price}
+        </if>
+        WHERE menu_id= #{menuId};
+    </update>
 
 </mapper>

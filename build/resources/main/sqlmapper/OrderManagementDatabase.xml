@@ -4,49 +4,81 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.OrderMapper">
+    <resultMap id="'order" type="OrderDTO">
+        <result property="order_id" column="order_id"/>
+
+    </resultMap>
+
     <resultMap id="order" type="OrderDTO">
-        <result property="orderId" column="order_id"/>
-        <result property="totalPrice" column="total_price"/>
-        <result property="menuId" column="order_menu_menu_menu_id"/>
-        <result property="menuOptionId" column="order_menu_menu_option_menu_option_id"/>
-        <result property="storeId" column="store_store_id"/>
-        <result property="userId" column="user_user_id"/>
+        <result property="order_id" column="order_id"/>
+        <result property="order_totalPrice" column="order_totalPrice"/>
+        <result property="order_delivery" column="order_delivery"/>
+        <result property="order_menuId" column="order_menuId"/>
+        <result property="order_optionId1" column="order_optionId1"/>
+        <result property="order_optionId2" column="order_optionId2"/>
+        <result property="order_userId" column="order_userId"/>
+        <result property="order_storeId" column="order_storeId"/>
     </resultMap>
 
-    <resultMap id="option" type="MenuOptionDTO">
-        <result property="menuOptionId" column="menu_option_id"/>
-        <result property="option" column="option"/>
-        <result property="price" column="price"/>
+    <resultMap id="orderMenu" type="OrderMenuDTO">
+        <result property="orderMenu_id" column="orderMenu_id"/>
+        <result property="orderMenu_delivery" column="orderMenu_delivery"/>
+        <result property="orderMenu_menuId" column="orderMenu_menuId"/>
+        <result property="orderMenu_storeId" column="orderMenu_storeId"/>
+        <result property="orderMenu_userId" column="orderMenu_userId"/>
     </resultMap>
 
-    <resultMap id="user" type="UsersDTO">
-        <result property="idNum" column="idNum"/>
-        <result property="id" column="id"/>
-        <result property="pwd" column="Password"/>
-        <result property="phone" column="phoneNum"/>
-        <result property="email" column="email"/>
-        <result property="age" column="age"/>
+    <resultMap id="orderOption" type="OrderOptionDTO">
+        <result property="orderOption_id" column="orderOption_id"/>
+        <result property="orderOption_optionId" column="orderOption_optionId"/>
+        <result property="orderOption_storeId" column="orderOption_storeId"/>
+        <result property="orderOption_orderMenuId" column="orderOption_orderMenuId"/>
     </resultMap>
-
 
     <select id="createOrder" resultMap="order">
-
+        INSERT INTO ORDER (order_userId, order_menuId, order_optionId1, order_optionId2)
+        VALUES (#{order_userId}, #{order_menuId}, #{order_optionId1}, #{order_optionId2})
     </select>
-
+    <select id="orderMenu" resultMap="order">
+        INSERT INTO ORDERMENU (orderMenu_menuId, orderMenu_storeId, orderMenu_userId)
+        VALUES (#{orderMenu_menuId}, #{orderMenu_storeId}, #{orderMenu_userId})
+    </select>
+    <select id="orderOption" resultMap="order">
+        INSERT INTO ORDER (orderOption_optionId, orderOption_storeId, orderOption_orderMenuId)
+        VALUES (#{orderOption_optionId}, #{orderOption_storeId}, #{orderOption_orderMenuId})
+    </select>
     <select id="showOrder" resultMap="order">
-
+        SELECT  om.user_name, om.menu_name, group_concat(oo.optionName),
+               om.menu_price+sum(oo.option_price) AS "total", om.order_delivery
+        FROM    orderMenu om, orderOption oo
+        ON      om.orderMenu_menuId = oo.orderOption_orderMenuId
+        GROUP BY orderOption_orderMenuId
     </select>
+
+    <update id="receiptOrder">
+        UPDATE  orderMenu
+        SET     delivey='배달중'
+        WHERE   order_id = #{order_id}
+    </update>
+    <update id="stockMinus">
+        UPDATE  orderMenu
+        SET     stock = stock - 1;
+        WHERE   Menu_id = #{Menu_id}
+    </update>
 
     <select id="cancelOrder" resultMap="order">
-
-    </select>
-
-    <select id="noMaterial" resultMap="order">
-
+        <set>
+            <if test='order_delivery.equals("접수대기")'>
+                delivey='취소'
+            </if>
+        </set>
     </select>
 
     <select id="showOrderHistory" resultMap="order">
-
+        SELECT  om.user_name, om.menu_name, group_concat(oo.optionName),
+                om.menu_price+sum(oo.option_price) AS "total", om.order_delivery
+        FROM    orderMenu om, orderOption oo
+            ON      om.orderMenu_menuId = oo.orderOption_orderMenuId
+        GROUP BY orderOption_orderMenuId
     </select>
-
 </mapper>
